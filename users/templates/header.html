@@ -25,15 +25,18 @@ border-radius:0
     </div>
     <ul class="nav navbar-nav">
          {% if user.is_authenticated %}
-      <li ><a href="#">Home</a></li>
-           {% else%}
+      <li ><a href="/home">Home</a></li>
+
      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories
+        <a   href="/category" class="dropdown-toggle cat" data-toggle="dropdown" >Categories
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Fiction</a></li>
-          <li><a href="#">Sci-fi</a></li>
-          <li><a href="#">Romance</a></li>
+
+            <!--{% for cat in categories %}-->
+
+
+
+            <!--{% endfor %}-->
         </ul>
       </li>
       <li><a href="#">Authors</a></li>
@@ -51,10 +54,10 @@ border-radius:0
         </div>
       </div>
     </form>
-
+{% else %}
       <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    {%endif%}
+  {% endif%}
      {% if user.is_authenticated %}
       <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     {% endif %}
@@ -63,9 +66,36 @@ border-radius:0
 </nav>
 
 
- 
+
 
 </body>
 </html>
+{% block javascript %}
+  <script>
+    $(".cat").click(function () {
+        console.log("click")
+        $(".categ").remove()
+        <!--$('.dropdown-menu').remove();-->
+      $.ajax({
+        url: '/categorylist',
+        data: {
 
+        },
+        dataType: 'json',
+        success: function (data) {
+
+       $.each(data, function(key,value){
+
+var link = $("<li><a class='categ' href=/categorydetails/"+data[key].pk+">"+data[key].fields['name']+"</a> </li>")
+$('.dropdown-menu').append(link);
+
+
+})
+
+        }
+      });
+
+    });
+  </script>
+{% endblock %}
 

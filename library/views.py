@@ -1,26 +1,34 @@
-
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
-from django.views.generic import View,DetailView
+from django.views import generic
+from django.views.generic import View, DetailView
 from .models import Category
-
-
-
-# Create your views here.
-
+from django.http import JsonResponse,HttpResponse
+import json
+from django.core import serializers
 class Home(View):
     template_name = "home.html"
+
     def get(self, request):
-            if request.user.is_authenticated():
-                return render(request, 'home.html')
-            else:
-                return redirect('login')
+        if request.user.is_authenticated():
+            return render(request, 'home.html')
+        else:
+            return redirect('login')
 
-class CategoryDetails(DetailView):
-    model= Category
-    
-    def get(self,request,pk):
+
+class CategoryDetails(generic.DetailView):
+    model = Category
+    def get(self, request, pk):
         category = Category.objects.filter(id=pk)
-        # b = Book.objects.filter(category_id=cat_id)
+      # books = Book.objects.filter(category_id=cat_id)
+        return render(request, 'categorydetails.html', context={"category": category, "books": "books"})
 
-        return render(request, 'categorydetails.html', context={"category": category, "books": "book"})
+
+class CategoryList(generic.ListView):
+    model = Category
+
+    def get(self, request):
+        print("category")
+        category = Category.objects.all()
+        # return render(request, 'header.html', context={"categories": category})
+        json_data = serializers.serialize('json', category)
+        return HttpResponse(json_data)
