@@ -14,7 +14,8 @@ urlpatterns = [
     url(r'^logout/', views.UserLogout.as_view(), name='logout'),
     url(r'^$', library_views.Home.as_view(), name='home'),
     url(r'^categorydetails/(?P<pk>[0-9]+)/', library_views.CategoryDetails.as_view(), name='categorydetails'),
-    url(r'^categorylist/', library_views.CategoryList.as_view(), name='categorylist')
+    url(r'^categorylist/', library_views.CategoryList.as_view(), name='categorylist'),
+    url(r'^removefromfavourites/', library_views.RemoveFromFavourites.as_view(), name='removefromfavourites')
 
 
 ]

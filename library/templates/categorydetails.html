@@ -1,7 +1,7 @@
 {% include "header.html" %}
 <html lang="en">
 <head>
-<!--<link href="https://fonts.googleapis.com/css?family=Bevan|Clicker+Script" rel="stylesheet">-->
+    <!--<link href="https://fonts.googleapis.com/css?family=Bevan|Clicker+Script" rel="stylesheet">-->
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -16,27 +16,24 @@
     <div class="panel panel-default">
 
 
+        {% load static %}
+        <div class="list-group panel-body">
 
-
-
- {% load static %}
-            <div class="list-group panel-body">
-
-                <h1   style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b> Books under this category</b></h1>
-  <a href="#" class="list-group-item"><img src="{% static category.picture_url %}" width="50" alt=""> book1 </a>
-   <a href="#" class="list-group-item"><img src="{% static category.picture_url %}" width="50" alt=""> book2 </a>
-    <a href="#" class="list-group-item"><img src="{% static category.picture_url %}" width="50" alt=""> book3 </a>
-</div>
-
-
-
-
-</div>
-
-
-
+            <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b> Books under
+                this category</b></h1>
+            <a href="#" class="list-group-item"><img src="{% static category.picture_url %}" width="50" alt=""> book1
+            </a>
+            <a href="#" class="list-group-item"><img src="{% static category.picture_url %}" width="50" alt=""> book2
+            </a>
+            <a href="#" class="list-group-item"><img src="{% static category.picture_url %}" width="50" alt=""> book3
+            </a>
         </div>
 
+
+    </div>
+
+
+</div>
 
 
 </div>
@@ -53,28 +50,46 @@
             {%for u in users%}
             {% if u == user %}
 
-            <div  style="text-align:right"> <button class="btn btn-default glyphicon glyphicon-star" value="add to favourites">remove</button></div>
-               {% else %}
-            <div  style="text-align:right"> <button class="btn btn-default glyphicon glyphicon-star" value="add to favourites">add to favourites</button></div>
-               {% endif %}
+            <div style="text-align:right">
+                <form action="/removefromfavourites/" method="post">
+                    {%csrf_token%}
+                    <input type="text" value={{category.pk}} name ='pk' hidden>
+                <button class="btn btn-default glyphicon glyphicon-star" type="submit" value="add to favourites">remove</button>
+                </form>
+            </div>
+            {% else %}
+            <!--<div  style="text-align:right"> <button class="btn btn-default glyphicon glyphicon-star" value="add to favourites">add to favourites</button></div>-->
+            {% endif %}
 
-                   {% endfor %}
+            {% endfor %}
 
 
+            {%if users %}
+            {%else%}
+            <div style="text-align:right">
+                <form action="" method="post">
+                      {%csrf_token%}
+                <button class="btn btn-default glyphicon glyphicon-star" type="submit" value="add to favourites" style="">add</button>
+                </form>
+            </div>
+            {%endif%}
+        </div>
+        <p style="font-family: 'Clicker Script', cursive; font-size: 200%; text-align:center"><B>{{category.description}}</B>
+        </p></div>
 
-        {%if users %}
-        {%else%}
-        <div  style="text-align:right"> <button class="btn btn-default glyphicon glyphicon-star" value="add to favourites" style="">add</button></div>
-        {%endif%}
-  </div>
-            <p style="font-family: 'Clicker Script', cursive; font-size: 200%; text-align:center"><B>{{category.description}}</B></p></div>
-
-    </div>
-    </div>
+</div>
+</div>
 </div>
 
 </div>
 <div class="col-md-1"></div>
+
+
+
+
+
+
+
 
 
 </body>
