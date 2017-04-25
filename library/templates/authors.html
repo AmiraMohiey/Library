@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Authors</title>
 
 
 
@@ -17,11 +17,9 @@
         <div class="list-group panel-body">
 
             <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-user"></i><b>Authors</b></h1>
-
-            <a href="#" class="list-group-item"><img src="{% static author.picture_url %}" width="50" alt=""> Author name1 </a>
-            <a href="#" class="list-group-item"><img src="{% static author.picture_url %}" width="50" alt=""> Author name2 </a>
-            <a href="#" class="list-group-item"><img src="{% static author.picture_url %}" width="50" alt=""> author name 3
-            </a>
+            {% for author in authors %}
+                <a href="{% url 'author' author.id %}" class="list-group-item"><img src="{{ author.picture_url.url }}" width="50" alt=""> {{author.name}} </a>
+            {% endfor %}
         </div>
 
 
