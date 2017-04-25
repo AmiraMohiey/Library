@@ -32,11 +32,11 @@ border-radius:0
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
 
-            <!--{% for cat in categories %}-->
+            {% for cat in categories %}
 
+                    <a >{{cat.name}}</a>
 
-
-            <!--{% endfor %}-->
+            {% endfor %}
         </ul>
       </li>
       <li><a href="#">Authors</a></li>
@@ -66,7 +66,8 @@ border-radius:0
 </nav>
 
 
-
+ {% block content %}
+ {% endblock %}
 
 </body>
 </html>

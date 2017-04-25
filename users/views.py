@@ -5,6 +5,7 @@ from .form import RegisterationForm
 from .form import LoginForm
 
 
+
 class UserRegisterationView(View):
     form_class = RegisterationForm
     template_name = "register.html"
@@ -62,6 +63,7 @@ class UserLogout(View):
                logout(request)
                redirect('login')
             return redirect('login')
+
 
 
 

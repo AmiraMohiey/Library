@@ -5,15 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-{% for cat in category %}
 
-{{cat.name}}
-{{cat.description}}
+
+{{category.name}}
+{{category.description}}
 {% load static %}
-<img src="{% static cat.picture_url %}">
+<img src="{% static category.picture_url %}">
 
 {{books}}
-{% endfor %}
+
 
 </body>
 </html>
