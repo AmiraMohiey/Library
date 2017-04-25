@@ -1,9 +1,6 @@
 from django.db import models
-
-from django.contrib.auth.models import User
-
 import os
-
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -22,7 +19,9 @@ class Author(models.Model):
     died_at = models.DateField(null=True)
     website = models.CharField(null=True, max_length=100)
     bio = models.TextField(null=True)
-    picture_url = models.ImageField(upload_to=os.path.join('images/author/%Y%m%d%H%M%S'),
+
+    picture_url = models.ImageField(upload_to=os.path.join('author/%Y%m%d%H%M%S'),
+
                                     blank=True, null=True)
 
     def __str__(self):
@@ -35,9 +34,15 @@ class Book(models.Model):
     published_at = models.DateField(null=True)
     country = models.CharField(null=True, max_length=100)
     link = models.URLField(null=True)
-    picture_url = models.ImageField(upload_to=os.path.join('images/book/%Y%m%d%H%M%S'),
+
+    picture_url = models.ImageField(upload_to=os.path.join('book/%Y%m%d%H%M%S'),
+
                                     blank=True, null=True)
-    author = models.ForeignKey('Author', on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+
+    @property
+    def rate(self):
+        return 0
 
     def __str__(self):
         return self.title

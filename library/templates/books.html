@@ -17,11 +17,9 @@
         <div class="list-group panel-body">
 
             <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b>Books</b></h1>
-            {% load static %}
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book name1 </a>
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book name2 </a>
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book name 3
-            </a>
+            {% for book in books %}
+                <a href="{% url 'book' book.id %}" class="list-group-item"><img src="{{ book.picture_url.url }}" width="50" alt=""> {{book.title}} </a>
+            {% endfor %}
         </div>
 
 

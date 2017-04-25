@@ -1,18 +1,15 @@
 body {
 	font-family: sans-serif;
 	font-weight: normal;
-	margin: 10px;
 
+	color: #999;
 	background-color: #eee;
 }
 
-form {
-	margin: 40px 0;
-}
 
 div .rd {
 	clear: both;
-	margin: 0 20%;
+	margin: 0 50px;
 }
 
 label {
@@ -56,7 +53,7 @@ input.radio:empty ~ label:before {
 input.radio:hover:not(:checked) ~ label:before {
 	content:'\2714';
 	text-indent: .9em;
-	color: #777;
+	color: #C2C2C2;
 }
 
 input.radio:hover:not(:checked) ~ label {
@@ -75,3 +72,5 @@ input.radio:checked ~ label {
 	color: black;
 }
 
+/* radio focus */
+</style>

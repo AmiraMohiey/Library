@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <style>
 
 .navbar  {
@@ -40,8 +41,8 @@ border-radius:0
             {% endfor %}
         </ul>
       </li>
-      <li><a href="#">Authors</a></li>
-      <li><a href="#">Books</a></li>
+      <li><a href="{% url 'authors_list' %}">Authors</a></li>
+      <li><a href="{% url 'books_list' %}">Books</a></li>
     </ul>
 
 <ul class="nav navbar-nav navbar-right">
