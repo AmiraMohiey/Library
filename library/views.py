@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.views.generic import View, DetailView
-from .models import Category
+from .models import Category,Book,Author
 from django.contrib.auth.models import User
 from django.http import JsonResponse, HttpResponse, Http404
+from django.db.models import Q
 
 from django.core import serializers
 
@@ -68,5 +69,38 @@ class CategoryList(generic.ListView):
 
 
 
+
+class Search(View):
+    def post(self,request):
+        search_query=request.POST.get('search_query')
+        qset_book = Q()
+        qset_author= Q()
+        for term in search_query.split():
+            qset_book |= Q(title__icontains=term)
+
+
+        books = Book.objects.filter(qset_book)
+        for term in search_query.split():
+            qset_author |= Q(name__icontains=term)
+        authors= Author.objects.filter(qset_author)
+        return render(request, 'searchresults.html', context={"books": books, "authors": authors})
+
+    def get(self, request,search_query):
+        qset_book = Q()
+        qset_author = Q()
+        for term in search_query.split():
+            qset_book |= Q(title__icontains=term)
+
+        books = Book.objects.filter(qset_book)
+        for term in search_query.split():
+            qset_author |= Q(name__icontains=term)
+        authors = Author.objects.filter(qset_author)
+
+
+        print(search_query)
+
+        json_books = serializers.serialize('json', books)
+        json_authors=serializers.serialize('json', authors)
+        return JsonResponse(json_books,safe=False)
 
 

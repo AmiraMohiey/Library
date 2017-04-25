@@ -15,7 +15,9 @@ urlpatterns = [
     url(r'^$', library_views.Home.as_view(), name='home'),
     url(r'^categorydetails/(?P<pk>[0-9]+)/', library_views.CategoryDetails.as_view(), name='categorydetails'),
     url(r'^categorylist/', library_views.CategoryList.as_view(), name='categorylist'),
-    url(r'^removefromfavourites/', library_views.RemoveFromFavourites.as_view(), name='removefromfavourites')
+    url(r'^removefromfavourites/', library_views.RemoveFromFavourites.as_view(), name='removefromfavourites'),
+    url(r'^search/(?P<search_query>[\w|\W]+)', library_views.Search.as_view(), name='searchget'),
+    url(r'^search/', library_views.Search.as_view(), name='searchpost')
 
 
 ]
