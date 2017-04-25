@@ -3,8 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
+
+
+<div class="col-md-3"></div>
+<div class="col-md-6">
+
+    <div class="panel panel-default">
+
+
+        <div class="list-group panel-body">
+
+            <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b>Books</b></h1>
+            {% load static %}
+            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book name1 </a>
+            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book name2 </a>
+            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book name 3
+            </a>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<div class="col-md-3"></div>
+
 
 </body>
 </html>

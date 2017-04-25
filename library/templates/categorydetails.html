@@ -1,11 +1,11 @@
 {% include "header.html" %}
 <html lang="en">
 <head>
-<link href="https://fonts.googleapis.com/css?family=Bevan|Clicker+Script" rel="stylesheet">
+<!--<link href="https://fonts.googleapis.com/css?family=Bevan|Clicker+Script" rel="stylesheet">-->
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style="background-color: #eee;">
 
 
 <div class="col-md-1"></div>
@@ -14,7 +14,7 @@
     <div class="panel panel-default">
 
         {% load static %}
-        <div><img class="media-object" src="{% static category.picture_url %}" width="520"></div>
+        <div><img class="media-object" src="{% static category.picture_url %}" width="100%"></div>
 
         <div class="panel-body">
             <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>{{category.description}}</B></p></div>

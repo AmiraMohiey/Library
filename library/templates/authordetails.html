@@ -1,0 +1,66 @@
+{% include "header.html" %}
+
+<html lang="en">
+<head>
+
+
+
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div class="col-md-1"></div>
+
+<div class="col-md-5">
+    <div class="panel panel-default">
+
+        {% load static %}
+        <div><img class="media-object" src="{% static author.picture_url  %}" width="100%"></div>
+
+        <div class="panel-body">
+            <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Author's Name : {{author.name}}</B>
+            </p>
+            <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Born at: {{author.birthdate}} </B>
+            </p>
+            <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Author's Biography :</B>{{author.bio}}</B>
+            </p>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-5">
+
+    <div class="panel panel-default">
+
+
+        <div class="list-group panel-body">
+
+            <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b> Books
+                Written by {{author.name}}</b></h1>
+
+            <a href="#" class="list-group-item"><img src="{% static author.picture_url %}" width="50" alt=""> book1 </a>
+            <a href="#" class="list-group-item"><img src="{% static author.picture_url %}" width="50" alt=""> book2 </a>
+            <a href="#" class="list-group-item"><img src="{% static author.picture_url %}" width="50" alt=""> book3
+            </a>
+        </div>
+
+
+    </div>
+
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="col-md-1"></div>
+
+
+</body>
+</html>
