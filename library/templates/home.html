@@ -7,106 +7,114 @@
 </head>
 
 
-
-
-
-
-
+<body style="background-color: #eee;">
 
 
 <div class="container">
 
 
-<div class="col-md-1"></div>
-<div class="col-md-5">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
 
-    <div class="panel panel-default">
+        <div class="panel panel-default">
 
 
-        <div class="list-group panel-body">
-    {% load static %}
-            <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b>My Books</b></h1>
+            <div class="list-group panel-body">
+                {% load static %}
+                <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b>My
+                    Books</b></h1>
 
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book name1 </a>
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book name2 </a>
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book name 3
-            </a>
+                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book
+                    name1 </a>
+                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book
+                    name2 </a>
+                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book
+                    name 3
+                </a>
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <div class="col-md-5">
+
+        <div class="panel panel-default">
+
+
+            <div class="list-group panel-body">
+                {% load static %}
+                <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b>Latest
+                    Books</b></h1>
+
+                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book
+                    name1 </a>
+                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book
+                    name2 </a>
+                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book
+                    name 3
+                </a>
+            </div>
+
+
         </div>
 
 
     </div>
 
-
-</div>
-<div class="col-md-5">
-
-    <div class="panel panel-default">
-
-
-        <div class="list-group panel-body">
-            {% load static %}
-            <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b>Latest Books</b></h1>
-
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book name1 </a>
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book name2 </a>
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book name 3
-            </a>
-        </div>
-
-
-    </div>
-
-
-</div>
-
-<div class="col-md-1"></div>
+    <div class="col-md-1"></div>
 </div>
 
 <div class="container">
     <div class="col-md-1"></div>
-<div class="col-md-5">
+    <div class="col-md-5">
 
-    <div class="panel panel-default">
+        <div class="panel panel-default">
 
 
-        <div class="list-group panel-body">
-    {% load static %}
-            <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-heart"></i><b>Followed Categories</b></h1>
+            <div class="list-group panel-body">
+                {% load static %}
+                <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-heart"></i><b>Followed
+                    Categories</b></h1>
+                {%for cat in category%}
+                <a href="/categorydetails/{{cat.pk }}" class="list-group-item"><img src="{% static cat.picture_url %}"
+                                                                                    width="50" alt=""> {{cat.name}} </a>
 
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> category name1 </a>
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> category name2 </a>
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> category name 3
-            </a>
+                {% endfor %}
+            </div>
+
+
         </div>
 
 
     </div>
+    <div class="col-md-5">
+
+        <div class="panel panel-default">
 
 
-</div>
-<div class="col-md-5">
+            <div class="list-group panel-body">
+                {% load static %}
+                <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-user"></i><b>Followed
+                    Authors</b></h1>
 
-    <div class="panel panel-default">
+                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Author
+                    name1 </a>
+                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Author
+                    name2 </a>
+                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Author
+                    name 3
+                </a>
+            </div>
 
 
-        <div class="list-group panel-body">
-    {% load static %}
-            <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-user"></i><b>Followed Authors</b></h1>
-
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Author name1 </a>
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Author name2 </a>
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Author name 3
-            </a>
         </div>
 
 
     </div>
-
-
+    <div class="col-md-1"></div>
 </div>
-<div class="col-md-1"></div>
-</div>
-
 
 
 </body>
