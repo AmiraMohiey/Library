@@ -10,17 +10,6 @@
 
 <div class="col-md-1"></div>
 
-<div class="col-md-5">
-    <div class="panel panel-default">
-
-        {% load static %}
-        <div><img class="media-object" src="{% static category.picture_url %}" width="100%"></div>
-
-        <div class="panel-body">
-            <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>{{category.description}}</B></p></div>
-    </div>
-</div>
-
 
 <div class="col-md-5">
 
@@ -30,7 +19,7 @@
 
 
 
-
+ {% load static %}
             <div class="list-group panel-body">
 
                 <h1   style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b> Books under this category</b></h1>
@@ -47,6 +36,40 @@
 
 
         </div>
+
+
+
+</div>
+
+
+<div class="col-md-5">
+    <div class="panel panel-default">
+
+
+        <div><img class="media-object" src="{% static category.picture_url %}" width="100%"></div>
+
+        <div class="panel-body">
+
+            {%for u in users%}
+            {% if u == user %}
+
+            <div  style="text-align:right"> <button class="btn btn-default glyphicon glyphicon-star" value="add to favourites">remove</button></div>
+               {% else %}
+            <div  style="text-align:right"> <button class="btn btn-default glyphicon glyphicon-star" value="add to favourites">add to favourites</button></div>
+               {% endif %}
+
+                   {% endfor %}
+
+
+
+        {%if users %}
+        {%else%}
+        <div  style="text-align:right"> <button class="btn btn-default glyphicon glyphicon-star" value="add to favourites" style="">add</button></div>
+        {%endif%}
+  </div>
+            <p style="font-family: 'Clicker Script', cursive; font-size: 200%; text-align:center"><B>{{category.description}}</B></p></div>
+
+    </div>
     </div>
 </div>
 
