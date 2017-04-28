@@ -6,7 +6,10 @@
     <title>Title</title>
 </head>
 
-
+<link href="/static/css/star-rating.css" media="all" rel="stylesheet" type="text/css "/>
+<link href="/static/css/radiobtns.css"  rel="stylesheet" type="text/css "/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/static/js/star-rating.js" type="text/javascript "></script>
 <body style="background-color: #eee;">
 
 
@@ -26,7 +29,8 @@
             <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>published at: </B>{{book.published_at}}</p>
             <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>book country :</B>{{book.country}}</p>
             <a href="{{book.link}}" style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>book link</B></a>
-            <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>book rate : </B>{{book.rate}}</p>
+            {% load static %}
+            <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>book rate : </B><img src="{% static book.rate %}" width="40%">
         </div>
     </div>
 </div>
@@ -65,9 +69,7 @@
     </div>
     {% endif%}
 </div>
-</div>
 
-</div>
 <!--<div class="col-md-1"></div>-->
 
 

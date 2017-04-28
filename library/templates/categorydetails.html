@@ -21,12 +21,14 @@
 
             <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b> Books under
                 this category</b></h1>
-            <a href="#" class="list-group-item"><img src="{% static category.picture_url %}" width="50" alt=""> book1
+            {%if books%}
+            {%for book in books%}
+            <a href="{% url 'book' book.id %}" class="list-group-item"><img src="{{ book.picture_url.url }}" width="50" alt="">{{book.title}}
             </a>
-            <a href="#" class="list-group-item"><img src="{% static category.picture_url %}" width="50" alt=""> book2
-            </a>
-            <a href="#" class="list-group-item"><img src="{% static category.picture_url %}" width="50" alt=""> book3
-            </a>
+{%endfor%}
+            {%else%}
+            <a  class="list-group-item">No books under this category yet</a>
+            {%endif%}
         </div>
 
 
