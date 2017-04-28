@@ -47,14 +47,11 @@
                 {% load static %}
                 <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b>Latest
                     Books</b></h1>
-
-                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book
-                    name1 </a>
-                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book
-                    name2 </a>
-                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book
-                    name 3
-                </a>
+                {% for latestbook in latestbooks%}
+                <a href="{% url 'book' latestbook.id %}" class="list-group-item"><img
+                        src="{{ latestbook.picture_url.url }}" width="50" alt=""> {{latestbook.title}} </a>
+                {%endfor%}
+                <a href="{% url 'books_list'  %}" class="list-group-item btn btn-link">View more</a>
             </div>
 
 

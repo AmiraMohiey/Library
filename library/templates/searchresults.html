@@ -29,7 +29,7 @@
             <h3 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b> Books</b></h3>
 
             {%for book in books%}
-            <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> {{book.title}}
+            <a href="#" class="list-group-item"><img src="{{book.picture_url.url}}" width="50" alt=""> {{book.title}}
             </a>
             {%endfor%}
         </div>
@@ -39,7 +39,7 @@
 
             <h3 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-user"></i><b> Authors</b></h3>
               {%for author in authors%}
-            <a href="#" class="list-group-item"><img src="{% static author.picture_url %}" width="50" alt=""> {{author.name}}
+            <a href="#" class="list-group-item"><img src="{{ author.picture_url.url }}" width="50" alt=""> {{author.name}}
             </a>
               {%endfor%}
         </div>
