@@ -9,7 +9,6 @@ from django.core import serializers
 from django import template
 
 
-
 class Home(View):
     template_name = "home.html"
 
@@ -86,6 +85,14 @@ class AuthorDetails(generic.DetailView):
     model = Author
     template_name = 'authordetails.html'
 
+    def post(self, request, pk):
+        author = Author.objects.get(pk=pk)
+        print(request.POST)
+        if 'add' in request.POST:
+            author.users.add(request.user)
+        else:
+            author.users.remove(request.user)
+        return redirect('author', pk=author.id)
 
 class BooksList(generic.ListView):
     template_name = 'books.html'

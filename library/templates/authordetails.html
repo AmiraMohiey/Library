@@ -2,10 +2,6 @@
 
 <html lang="en">
 <head>
-
-
-
-
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -14,56 +10,69 @@
 
 <div class="col-md-1"></div>
 
-<div class="col-md-5">
+<div class="col-md-6">
     <div class="panel panel-default">
-
-        {% load static %}
-        <div><img class="media-object" src="{{author.picture_url.url}}" width="100px"></div>
-
         <div class="panel-body">
-            <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Author's Name : </B>{{author.name}}</p>
-            <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Born at:  </B>{{author.born_at}}</p>
-            {% if author.died_at != none %}
-                <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>died at:  </B>{{author.died_at}}</p>
-            {% endif %}
-            <a href="{{author.website}}" style="font-family: 'Clicker Script', cursive; font-size: 200%;">
-                <B>Website</B>
-            </a>
-            <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Author's Biography :</B>{{author.bio}}</p>
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="media-object" src="{{author.picture_url.url}}" width="100%">
+                </div>
+                <div class="col-md-8">
+                    <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Author's Name : </B>{{author.name}}
+                    </p>
+                    <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Born at: </B>{{author.born_at}}
+                    </p>
+                    {% if author.died_at != none %}
+                    <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>died at: </B>{{author.died_at}}
+                    </p>
+                    {% endif %}
+                    <a href="{{author.website}}" style="font-family: 'Clicker Script', cursive; font-size: 200%;"> <B>Website</B>
+                    </a><br>
+                    <form action="" method="post">
+                      {%csrf_token%}
+                        {% if user in author.users.all %}
+                        <input type="submit" name="remove" value="Following" class="btn btn-primary" data-remote="true"
+                                onmouseover="this.value='unfollow';"
+                                onmouseout="this.value='Following';">
+                            <i class="icon-ok icon-white"></i>
 
+                        </input>
+                        {% else %}
+                        <input type="submit" name="add" value="+" class="btn btn-primary" data-remote="true"
+                                onmouseover="this.value='follow +';"
+                                onmouseout="this.value='+';">
+                            <i class="icon-ok icon-white"></i>
+                        </input>
+                        {% endif %}
+                    </form>
 
+                </div>
+            </div>
+            <div class="row">
+                <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Author's Biography :</B>{{author.bio}}
+                </p>
+            </div>
         </div>
     </div>
 </div>
 
 
 <div class="col-md-5">
-
     <div class="panel panel-default">
-
-
         <div class="list-group panel-body">
-
             <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b> Books
                 Written by {{author.name}}</b></h1>
             {% for book in author.book_set.all %}
-                <a href="{% url 'book' book.id %}" class="list-group-item">
-                    <img src="{{book.picture_url.url}}" width="50" alt=""> {{book.title}}
-                </a>
-                {% empty %}
-                <p style="font-family: 'Clicker Script', cursive; font-size: 200%;">No books for this author</p>
+            <a href="{% url 'book' book.id %}" class="list-group-item">
+                <img src="{{book.picture_url.url}}" width="50" alt=""> {{book.title}}
+            </a>
+            {% empty %}
+            <p style="font-family: 'Clicker Script', cursive; font-size: 200%;">No books for this author</p>
             {% endfor %}
         </div>
-
-
     </div>
-
-
-</div>
-</div>
 </div>
 
-</div>
 <div class="col-md-1"></div>
 
 

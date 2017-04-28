@@ -19,7 +19,7 @@ class Author(models.Model):
     died_at = models.DateField(null=True)
     website = models.CharField(null=True, max_length=100)
     bio = models.TextField(null=True)
-
+    users = models.ManyToManyField(User, blank=True)
     picture_url = models.ImageField(upload_to=os.path.join('author/%Y%m%d%H%M%S'),
 
                                     blank=True, null=True)
