@@ -96,6 +96,13 @@ class BooksList(generic.ListView):
     template_name = 'books.html'
     context_object_name = 'books'
 
+    def get_queryset(self):
+        return Book.objects.all()
+
+
+class BookDetails(generic.DetailView):
+    model = Book
+    template_name = 'bookdetails.html'
 
 class Search(View):
     def post(self,request):
@@ -129,12 +136,3 @@ class Search(View):
         json_books = serializers.serialize('json', books)
         json_authors=serializers.serialize('json', authors)
         return JsonResponse(json_books,safe=False)
-
-
-    def get_queryset(self):
-        return Book.objects.all()
-
-
-class BookDetails(generic.DetailView):
-    model = Book
-    template_name = 'bookdetails.html'
