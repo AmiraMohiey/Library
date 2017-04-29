@@ -4,9 +4,9 @@ from django.http import JsonResponse, HttpResponse, Http404
 from django.views.generic import View, DetailView
 from django.contrib.auth.models import User
 from django.db.models import Q
-from .models import Category, Book, Author
+from .models import Category, Book, Author, UserBookRelation
 from django.core import serializers
-from django import template
+
 
 
 class Home(View):
@@ -87,7 +87,6 @@ class AuthorDetails(generic.DetailView):
 
     def post(self, request, pk):
         author = Author.objects.get(pk=pk)
-        print(request.POST)
         if 'add' in request.POST:
             author.users.add(request.user)
         else:
@@ -104,6 +103,29 @@ class BooksList(generic.ListView):
 class BookDetails(generic.DetailView):
     model = Book
     template_name = 'bookdetails.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(BookDetails, self).get_context_data(**kwargs)
+        try:
+            context['rel'] = UserBookRelation.objects.get(user=self.request.user, book=self.kwargs['pk'])
+        except :
+            context['rel'] = None
+        return context
+
+    def post(self, request, pk):
+        book = Book.objects.get(pk=pk)
+        rel, created = UserBookRelation.objects.get_or_create(user=request.user, book=book)
+        if 'add_to_wish' in request.POST:
+            rel.wish = True
+        elif 'remove_from_wish' in request.POST:
+            rel.wish = False
+        elif 'read' in request.POST:
+            rel.wish = False
+            rel.read = True
+        elif 'unread' in request.POST:
+            rel.read = False
+        rel.save()
+        return redirect('book', pk=book.id)
 
 class Search(View):
     def post(self, request):
