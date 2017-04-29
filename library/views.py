@@ -124,6 +124,8 @@ class BookDetails(generic.DetailView):
             rel.read = True
         elif 'unread' in request.POST:
             rel.read = False
+        else :
+            rel.rate = request.POST.get('value')
         rel.save()
         return redirect('book', pk=book.id)
 

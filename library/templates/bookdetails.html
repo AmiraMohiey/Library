@@ -43,7 +43,7 @@
                             </div>
                             <div style="display: table; margin: 0 auto; text-align:center">
                                 <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B> Rate </B></p>
-                                <input id="rating" class="rating rating-loading" value="0" data-min="0" data-max="5" data-step="1"
+                                <input type="submit" name="rate" id="rating" class="rating rating-loading" value="{{rel.rate}}" data-min="0" data-max="5" data-step="1"
                                        data-size="sm">
                             </div>
                         </form>
@@ -84,9 +84,21 @@
 <script>
 
     $(function () {
-        $("div.rating-stars").click(function () {
-            console.log("click")
-            console.log($("#rating").val())
+        $("input.rating-input").change(function () {
+            val =$("input.rating-input").val() || 0;
+            console.log(val)
+            $.ajax({
+                type: 'POST',
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}',
+                    value: val},
+                success: function (data) {
+                    $("#SOME-DIV").html(data);
+                },
+                error: function(data) {
+                    $("#MESSAGE-DIV").html("Something went wrong!");
+                }
+            });
+        return false;
         })
     })
 
