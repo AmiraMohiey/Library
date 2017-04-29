@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from .models import Category, Book, Author, UserBookRelation
 from django.core import serializers
-
+from itertools import chain
 
 
 class Home(View):
@@ -155,9 +155,8 @@ class Search(View):
         authors = Author.objects.filter(qset_author)
 
         print(search_query)
-
-        json_books = serializers.serialize('json', books)
-        json_authors = serializers.serialize('json', authors)
-        return JsonResponse(json_books, safe=False)
+        combined = list(chain(books, authors))
+        json_result = serializers.serialize('json', combined)
+        return JsonResponse(json_result, safe=False)
 
 

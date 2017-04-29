@@ -50,6 +50,13 @@ class Book(models.Model):
         except :
             return 0
 
+    def stared(self):
+        try:
+            return self.userbookrelation_set.filter(rate__gt=0).aggregate(Avg('rate'))['rate__avg']
+        except :
+            return 0
+
+
     @property
     def rate_count(self):
         try:

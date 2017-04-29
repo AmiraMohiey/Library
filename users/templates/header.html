@@ -112,7 +112,6 @@
 
     $('#search').on('input', function (e) {
         $('.ser').remove()
-        console.log($('#search').val())
         if ($('#search').val()) {
             $.ajax({
                 url: '/search/' + $('#search').val(),
@@ -120,16 +119,21 @@
                 dataType: 'json',
                 success: function (data) {
 
-                    jsonbook = $.parseJSON(data)
-                    console.log(jsonbook)
+                    obj = $.parseJSON(data)
+                    console.log(obj[1])
+                    if (!$.isEmptyObject(obj)) {
+                            $.each(obj, function (key, value) {
+                                if (obj[key].model == 'library.book') {
+                                    $('.input-group-btn').addClass('open');
+                                    var link = $("<li><a class='ser' style='width: 240px' href=/book/" + obj[key].pk + '>' + obj[key].fields['title'] + '</a> </li>')
+                                    $('.pull-right').append(link)
+                                }else{
+                                    $('.input-group-btn').addClass('open');
+                                    var link = $("<li><a class='ser' style='width: 240px' href=/author/" + obj[key].pk + '>' + obj[key].fields['name'] + '</a> </li>')
+                                    $('.pull-right').append(link)
+                                }
+                            })
 
-                    if (!$.isEmptyObject(jsonbook)) {
-                        $.each(jsonbook, function (key, value) {
-                            console.log(jsonbook[key].fields['title'])
-                            $('.input-group-btn').addClass('open');
-                            var link = $("<li><a class='ser' href=/book/" + jsonbook[key].pk + '>' + jsonbook[key].fields['title'] + '</a> </li>')
-                            $('.pull-right').append(link)
-                        })
                     }
                 }
             })
