@@ -18,12 +18,12 @@
                     <img class="media-object" src="{{author.picture_url.url}}" width="100%">
                 </div>
                 <div class="col-md-8">
-                    <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Author's Name : </B>{{author.name}}
+                    <p ><B  style="font-family: 'Clicker Script', cursive; font-size: 200%;">Author's Name : </B>{{author.name}}
                     </p>
-                    <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Born at: </B>{{author.born_at}}
+                    <p ><B  style="font-family: 'Clicker Script', cursive; font-size: 200%;">Born at: </B>{{author.born_at}}
                     </p>
                     {% if author.died_at != none %}
-                    <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>died at: </B>{{author.died_at}}
+                    <p><B  style="font-family: 'Clicker Script', cursive; font-size: 200%;">died at: </B>{{author.died_at}}
                     </p>
                     {% endif %}
                     <a href="{{author.website}}" style="font-family: 'Clicker Script', cursive; font-size: 200%;"> <B>Website</B>
@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="row">
-                <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Author's Biography :</B>{{author.bio}}
+                <p style="text-align:center; font-size:20px"><B  style="font-family: 'Clicker Script', cursive; font-size: 200%;">Author's Biography :</B>{{author.bio}}
                 </p>
             </div>
         </div>
