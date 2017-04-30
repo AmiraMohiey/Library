@@ -23,14 +23,12 @@
                 {% load static %}
                 <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b>My
                     Books</b></h1>
+                {%for books in mybooks%}
 
-                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book
-                    name1 </a>
-                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book
-                    name2 </a>
-                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Book
-                    name 3
+                <a href="{% url 'book' books.book.id %}" class="list-group-item"><img
+                        src="{{ books.book.picture_url.url }}" width="50" alt=""> {{books.book.title}}
                 </a>
+                {%endfor%}
             </div>
 
 
@@ -89,20 +87,16 @@
     <div class="col-md-5">
 
         <div class="panel panel-default">
-
-
             <div class="list-group panel-body">
                 {% load static %}
-                <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-user"></i><b>Followed
+                <h1 style="font-family: 'Clicker Script', cursive;">
+                    <i class="glyphicon glyphicon-user"></i><b>Followed
                     Authors</b></h1>
-
-                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Author
-                    name1 </a>
-                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Author
-                    name2 </a>
-                <a href="#" class="list-group-item"><img src="{% static book.picture_url %}" width="50" alt=""> Author
-                    name 3
+                {%for author in authors%}
+                <a href="{% url 'author' author.id%}" class="list-group-item"><img src="{{ author.picture_url.url }}"
+                                                                                   width="50" alt=""> {{author.name}}
                 </a>
+                {%endfor%}
             </div>
 
 

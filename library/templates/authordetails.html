@@ -29,7 +29,9 @@
                     <a href="{{author.website}}" style="font-family: 'Clicker Script', cursive; font-size: 200%;"> <B>Website</B>
                     </a><br>
                     <form action="" method="post">
+
                       {%csrf_token%}
+                         {% if user.is_authenticated %}
                         {% if user in author.users.all %}
                         <input type="submit" name="remove" value="Following" class="btn btn-primary" data-remote="true"
                                 onmouseover="this.value='unfollow';"
@@ -44,6 +46,7 @@
                             <i class="icon-ok icon-white"></i>
                         </input>
                         {% endif %}
+                        {%endif%}
                     </form>
 
                 </div>

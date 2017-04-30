@@ -56,7 +56,9 @@
                 <form action="/removefromfavourites/" method="post">
                     {%csrf_token%}
                     <input type="text" value={{category.pk}} name ='pk' hidden>
+                      {% if user.is_authenticated %}
                 <button class="btn btn-default glyphicon glyphicon-star" type="submit" value="add to favourites">remove</button>
+               {% endif %}
                 </form>
             </div>
             {% else %}
@@ -71,7 +73,9 @@
             <div style="text-align:right">
                 <form action="" method="post">
                       {%csrf_token%}
+                     {% if user.is_authenticated %}
                 <button class="btn btn-default glyphicon glyphicon-star" type="submit" value="add to favourites" style="">add</button>
+                {%endif%}
                 </form>
             </div>
             {%endif%}

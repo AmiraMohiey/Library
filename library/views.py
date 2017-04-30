@@ -16,7 +16,11 @@ class Home(View):
         if request.user.is_authenticated():
             last_five_books = Book.objects.all().order_by('-id')[:5]
             category = Category.objects.filter(users=request.user)
-            return render(request, 'home.html', context={"category": category, "latestbooks": last_five_books})
+            authors = Author.objects.filter(users=request.user)
+            mybooks= UserBookRelation.objects.filter(user=request.user)
+
+
+            return render(request, 'home.html', context={"category": category, "latestbooks": last_five_books, "authors":authors, "mybooks":mybooks})
         else:
             return redirect('login')
 
@@ -38,22 +42,23 @@ class CategoryDetails(generic.DetailView):
 
     def post(self, request, pk):
         print("post", pk)
-
+        books = Book.objects.filter(category_id=pk)
         category = Category.objects.get(pk=pk)
         category.users.add(request.user)
         users = User.objects.all().filter(category=category)
-        return render(request, 'categorydetails.html', context={"category": category, "users": users})
+        return render(request, 'categorydetails.html', context={"category": category, "users": users ,"books":books})
 
 
 class RemoveFromFavourites(View):
     def post(self, request):
         pk = request.POST.get('pk')
         category = Category.objects.get(pk=pk)
+        books = Book.objects.filter(category_id=pk)
         category.users.remove(request.user)
 
         print(pk)
         users = User.objects.all().filter(category=category)
-        return redirect('/categorydetails/' + pk, context={"category": category, "users": users})
+        return redirect('/categorydetails/' + pk, context={"category": category, "users": users,"books":books})
 
 
 class CategoryList(generic.ListView):
