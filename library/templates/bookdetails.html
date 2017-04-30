@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{book}}</title>
 </head>
 <link href="/static/css/star-rating.css" media="all" rel="stylesheet" type="text/css "/>
 <link href="/static/css/rate.css" media="all" rel="stylesheet" type="text/css "/>
@@ -51,8 +51,10 @@
                     </div>
                 </div>
                 <div class="col-md-8">
+
+                    <p style="text-align:center; font-family: 'Clicker Script', cursive; font-size: 300%;"><B>{{book.title}}</B></p>
                     {% load static %}
-                    <div class="col-md-6" style="margin-top: 5px">
+                    <div class="col-md-6 pull-right" style="margin-top: 5px">
                     <div class="star-ratings-sprite">
                         <span style="width:{{book.rate}}%" class="star-ratings-sprite-rating"></span>
                     </div>
@@ -60,13 +62,12 @@
                     <p style="font-family: 'Clicker Script', cursive; font-size: 200%;">
                         <B>book rated {{book.stared}} by {{book.rate_count}} user{{ book.rate_count|pluralize }} </B>
                     </p>
-                    <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Books's Name : </B>{{book.title}}</p>
-                    <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Author : </B>
+                    <p ><B style="font-family: 'Clicker Script', cursive; font-size: 200%;">Author : </B>
                         <a href="{% url 'author' book.author_id %}">{{book.author}}</a>
                     </p>
-                    <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>published at: </B>{{book.published_at}}</p>
-                    <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>book country :</B>{{book.country}}</p>
-                    <a href="{{book.link}}" style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>book link</B></a>
+                    <p ><B style="font-family: 'Clicker Script', cursive; font-size: 200%;">published at: </B>{{book.published_at}}</p>
+                    <p><B style="font-family: 'Clicker Script', cursive; font-size: 200%;">book country :</B>{{book.country}}</p>
+                    <a href="{{book.link}}"><B style="font-family: 'Clicker Script', cursive; font-size: 200%;">book link</B></a>
 
                 </div>
             </div>

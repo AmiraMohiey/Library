@@ -1,0 +1,100 @@
+{% include "header.html" %}
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>{{book}}</title>
+</head>
+<link href="/static/css/rate.css" media="all" rel="stylesheet" type="text/css "/>
+<link href="/static/css/radiobtns.css" rel="stylesheet" type="text/css "/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<body style="background-color: #eee;">
+
+<div class="col-md-1"></div>
+<div class="col-md-10">
+    <div class="panel panel-detail">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4 panel panel-default">
+                    <div class="panel-body">
+                        <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-user"></i><b>Details</b>
+                        </h1>
+                        <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Name : </B>{{user.first_name}}
+                            {{user.last_name}}</p>
+                        <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>username : </B>{{user.username}}
+                        </p>
+                        <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Email : </B>{{user.email}}
+                        </p>
+                        <p style="font-family: 'Clicker Script', cursive; font-size: 200%;"><B>Date joined : </B>{{user.date_joined}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="list-group panel-body">
+                        <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b>Wish
+                            List</b></h1>
+                        {% for wish in wish_list %}
+                        {% with book=wish.book %}
+                        <div class="list-group-item" >
+                            <a href="{% url 'book' book.id %}">
+                                <img src="{{ book.picture_url.url }}" width="50" alt=""> {{book.title}}
+                            </a>
+                            <div class="col-md-3 "  style=" display: inline-block;left: 50%; vertical-align: middle; float: none;">
+                                <form action="" method="post" >
+                                    <div class="dropdown" style=" vertical-align: middle">
+                                        {%csrf_token%}
+                                        <div class="dropbtn" >Change status</div>
+                                        <div class="dropdown-content">
+                                            <input type="submit" name="remove_from_wish" value="remove from wishlist"/>
+                                            <input type="submit" name="read" value='read'/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-3 " style=" display: inline-block; vertical-align: middle; float: none;" >
+                                <div class="star-ratings-sprite" >
+                                    <span style="width:{{book.rate}}% " class="star-ratings-sprite-rating"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        {% endwith %}
+                        {% endfor %}
+                    </div>
+                    <div class="list-group panel-body">
+                        <h1 style="font-family: 'Clicker Script', cursive;"><i class="glyphicon glyphicon-book"></i><b>Books you have read</b></h1>
+                        {% for read in read_list %}
+                        {% with book=read.book %}
+                        <div class="list-group-item" >
+                            <a href="{% url 'book' book.id %}">
+                                <img src="{{ book.picture_url.url }}" width="50" alt=""> {{book.title}}
+                            </a>
+                            <div class="col-md-3 "  style=" display: inline-block;left: 50%; vertical-align: middle; float: none;">
+                                <form action="" method="post" >
+                                    <div class="dropdown" style=" vertical-align: middle">
+                                        {%csrf_token%}
+                                        <div class="dropbtn" >Change status</div>
+                                        <div class="dropdown-content">
+                                            <input type="submit" name="unread" value='you read the book&#10mark as unread'/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-3 " style=" display: inline-block; vertical-align: middle; float: none;" >
+                                <div class="star-ratings-sprite" >
+                                    <span style="width:{{book.rate}}% " class="star-ratings-sprite-rating"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        {% endwith %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

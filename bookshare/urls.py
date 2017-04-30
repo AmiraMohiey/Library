@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^author/(?P<pk>[0-9]+)/', library_views.AuthorDetails.as_view(), name='author'),
     url(r'^books/', library_views.BooksList.as_view(), name='books_list'),
     url(r'^book/(?P<pk>[0-9]+)/', library_views.BookDetails.as_view(), name='book'),
-    url(r'^removefromfavourites/', library_views.RemoveFromFavourites.as_view(), name='removefromfavourites')
+    url(r'^removefromfavourites/', library_views.RemoveFromFavourites.as_view(), name='removefromfavourites'),
+    url(r'^user/(?P<pk>[0-9]+)/', library_views.UserDetails.as_view(), name='user_details'),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

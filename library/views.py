@@ -164,4 +164,18 @@ class Search(View):
         json_result = serializers.serialize('json', combined)
         return JsonResponse(json_result, safe=False)
 
+class UserDetails(generic.DetailView):
+    model = User
+    template_name = 'userdetails.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(UserDetails, self).get_context_data(**kwargs)
+        try:
+            context['wish_list'] = UserBookRelation.objects.filter(user=self.request.user, wish=True)
+        except :
+            context['wish_list'] = None
+        try:
+            context['read_list'] = UserBookRelation.objects.filter(user=self.request.user, read=True)
+        except:
+            context['read_list'] = None
+        return context
